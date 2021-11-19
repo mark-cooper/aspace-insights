@@ -6,11 +6,11 @@ Collects data and generates reports from ArchivesSpace instances.
 bundle install --binstubs
 
 # dev
-bundle exec shotgun config.ru
+./bin/shotgun config.ru
 
 # test
-bundle exec rspec
+./bin/rspec
 
 # production
-RACK_ENV=production TOKEN=$TOKEN bundle exec rackup
+RACK_ENV=production TOKEN=$TOKEN ./bin/rackup
 ```
