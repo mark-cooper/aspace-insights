@@ -12,16 +12,14 @@ module Sinatra
       valid_token?
     end
 
-    # TODO test
     def valid_token?
-      token = request['token'].to_s
+      request_token = ASpaceInsightsApi::Token.new(request['token'].to_s)
+      app_token     = ASpaceInsightsApi::Token.new(settings.token.to_s)
 
-      return false unless token
-      return false unless token.length.positive?
-      return false unless token.length >= ASpaceInsightsApi::Constants.TOKEN_MIN_LENGTH
-      return false if settings.token.nil?
+      return false unless request_token.valid?
+      return false unless app_token.valid?
 
-      request['token'] == settings.token
+      request_token.token == app_token.token
     end
   end
 

@@ -1,7 +1,7 @@
 ---
 development:
-  token: "01609d9cc98201a9c859dece3035e19d"
+  token: "<%= ASpaceInsightsApi::Constants.DEVELOPMENT_TOKEN %>"
 test:
-  token: "01609d9cc98201a9c859dece3035e19d"
+  token: "<%= ASpaceInsightsApi::Constants.TEST_TOKEN %>"
 production:
   token: "<%= ENV.fetch('TOKEN', nil) %>"
