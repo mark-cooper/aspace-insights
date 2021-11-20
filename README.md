@@ -3,7 +3,7 @@
 Collects data and generates reports from ArchivesSpace instances.
 
 ```bash
-bundle binstubs --all
+bundle install
 ./bootstrap.sh
 
 # dev server
