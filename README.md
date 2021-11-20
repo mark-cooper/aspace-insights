@@ -7,10 +7,10 @@ bundle binstubs --all
 ./bootstrap.sh
 
 # dev server
-./bin/shotgun config.ru -p 3000
+./server.sh
 
 # dev cli
-./bin/pry -I . -r main.rb
+./cli.sh
 
 # test
 ./bin/rspec
