@@ -1,24 +1,28 @@
 class ASpaceInsightsApi < Sinatra::Application
   class Token
-    attr_reader :token
+    attr_reader :errors, :token
 
     def initialize(token)
-      @token = token
+      @errors = []
+      @token  = token
     end
 
     def valid?
-      return false if empty?
-      return false if too_short?
+      empty?
+      too_short?
+      return false if @errors.any?
 
       true
     end
 
     def empty?
-      return true if token.nil? || token.empty?
+      @errors << 'Token is empty' if token.nil? || token.empty?
     end
 
     def too_short?
-      return true if token.length < ASpaceInsightsApi::Constants.TOKEN_MIN_LENGTH
+      min = ASpaceInsightsApi::Constants.TOKEN_MIN_LENGTH
+      len = token.to_s.length
+      @errors << "Token is too short [#{len}], must be at least [#{min}]" if len < min
     end
   end
 end
