@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_105224) do
   end
 
   create_table "reports", force: :cascade do |t|
+    t.integer "month", null: false
     t.integer "total", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
