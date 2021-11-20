@@ -19,12 +19,12 @@ module Sinatra
       app_token     = ASpaceInsightsApi::Token.new(settings.token.to_s)
 
       unless request_token.valid?
-        log.error "Request token is invalid: #{request_token.errors}"
+        ASpaceInsightsApi.log.error "Request token is invalid: #{request_token.errors}"
         return false
       end
 
       unless app_token.valid?
-        log.error "App token is invalid: #{app_token.errors}"
+        ASpaceInsightsApi.log.error "App token is invalid: #{app_token.errors}"
         return false
       end
 
