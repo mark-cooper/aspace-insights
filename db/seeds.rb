@@ -1,4 +1,8 @@
 if ENV.fetch('RACK_ENV', 'development') == 'development'
-  Instance.find_or_create_by(name: 'Test')
-  # TODO
+  instance = Instance.find_or_create_by(name: 'Test') do |i|
+    i.reports << Report.create
+  end
+  instance.repositories << Repository.find_or_create_by(name: 'Test') do |r|
+    r.reports << Report.create
+  end
 end
