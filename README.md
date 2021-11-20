@@ -3,11 +3,14 @@
 Collects data and generates reports from ArchivesSpace instances.
 
 ```bash
-bundle install --binstubs
+bundle binstubs --all
 ./bootstrap.sh
 
-# dev
+# dev server
 ./bin/shotgun config.ru -p 3000
+
+# dev cli
+./bin/pry -I . -r main.rb
 
 # test
 ./bin/rspec
