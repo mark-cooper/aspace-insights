@@ -1,20 +1,38 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (5.2.0)
+      activesupport (= 5.2.0)
+    activerecord (5.2.0)
+      activemodel (= 5.2.0)
+      activesupport (= 5.2.0)
+      arel (>= 9.0)
+    activesupport (5.2.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    arel (9.0.0)
     ast (2.4.2)
+    concurrent-ruby (1.1.9)
     diff-lcs (1.4.4)
+    i18n (1.8.11)
+      concurrent-ruby (~> 1.0)
+    minitest (5.14.4)
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
+    rake (13.0.6)
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rspec (3.10.0)
@@ -50,25 +68,36 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-activerecord (2.0.23)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
     sinatra-contrib (2.1.0)
       multi_json
       mustermann (~> 1.0)
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    thread_safe (0.3.6)
     tilt (2.0.10)
+    tzinfo (1.2.9)
+      thread_safe (~> 0.1)
     unicode-display_width (2.1.0)
 
 PLATFORMS
+  arm64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
+  activerecord (= 5.2)
   multi_json
+  pg
   rack-test
+  rake
   rspec
   rubocop
   shotgun
   sinatra
+  sinatra-activerecord
   sinatra-contrib
 
 BUNDLED WITH

@@ -1,0 +1,14 @@
+---
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("APP_MAX_THREADS") { 5 } %>
+development:
+  <<: *default
+  url: postgres://postgres:password@localhost/aspace_insights_development
+test:
+  <<: *default
+  url: postgres://postgres:password@localhost/aspace_insights_test
+production:
+  <<: *default
+  url: <%= ENV.fetch('DATABASE_URL', nil) %>

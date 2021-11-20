@@ -1,5 +1,7 @@
+require 'logger'
 require 'multi_json'
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'sinatra/config_file'
 
 %w[helpers models routes].each do |dir|
@@ -12,10 +14,14 @@ Sinatra::Application.config_file(
 )
 
 class ASpaceInsightsApi < Sinatra::Application
+  register Sinatra::ActiveRecordExtension
+
   configure do
-    unless ASpaceInsightsApi::Token.new(settings.token).valid?
-      raise 'Invalid app token, cannot startup.'
-    end
+    set :database_file, File.join(File.dirname(__FILE__), 'config', 'database.yml')
+    set :log, Logger.new($stdout)
+    log.level = Logger::DEBUG
+
+    raise 'Invalid app token, cannot startup.' unless ASpaceInsightsApi::Token.new(settings.token).valid?
   end
 
   before do
