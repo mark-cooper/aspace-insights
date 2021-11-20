@@ -11,8 +11,12 @@ gem 'sinatra-contrib'
 
 group :development do
   gem 'pry'
-  gem 'rack-test'
-  gem 'rspec'
   gem 'rubocop'
   gem 'shotgun'
+end
+
+group :test do
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'shoulda-matchers'
 end
