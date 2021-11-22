@@ -1,0 +1,67 @@
+{
+  "type": "report",
+  "data": {
+    "header": {
+      "sitecode": "archivesspace",
+      "name": "archivesspace",
+      "tier": null,
+      "frontend_url": "http://localhost:8080",
+      "public_url": "http://localhost:8081",
+      "date": "2021-11-22 14: 04: 00 -0800"
+    },
+    "report": {
+      "global": {
+        "accession": 15,
+        "agent_corporate_entity": 49,
+        "agent_family": 3,
+        "agent_person": 179,
+        "agent_software": 1,
+        "archival_object": 2049,
+        "digital_object": 245,
+        "digital_object_component": 94,
+        "location": 277,
+        "repository": 3,
+        "resource": 42,
+        "subject": 331,
+        "top_container": 240,
+        "user": 24,
+        "total": 3552,
+        "user_last_mtime": "2021-11-22 16:12:17 UTC"
+      },
+      "repository": [
+        {
+          "YNHSC": {
+            "name": "Your Name Here Special Collections",
+            "publish": 1,
+            "accession": 15,
+            "archival_object": 1560,
+            "digital_object": 232,
+            "digital_object_component": 94,
+            "resource": 27,
+            "top_container": 169
+          },
+          "ATTracer": {
+            "name": "AT Tracer",
+            "publish": 1,
+            "accession": 0,
+            "archival_object": 14,
+            "digital_object": 12,
+            "digital_object_component": 0,
+            "resource": 3,
+            "top_container": 12
+          },
+          "Space": {
+            "name": "Repository that Manages Space",
+            "publish": 1,
+            "accession": 0,
+            "archival_object": 475,
+            "digital_object": 1,
+            "digital_object_component": 0,
+            "resource": 12,
+            "top_container": 47
+          }
+        }
+      ]
+    }
+  }
+}
