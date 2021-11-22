@@ -1,7 +1,8 @@
 class ASpaceInsightsApi < Sinatra::Application
   post '/instances' do
-    MultiJson.dump({
-                     result: 'ok'
-                   })
+    ASpaceInsightsApi::Webhook.new.handle(request)
+    # MultiJson.dump({
+    #                  result: 'ok'
+    #                })
   end
 end

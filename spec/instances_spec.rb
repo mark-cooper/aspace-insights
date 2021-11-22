@@ -5,10 +5,26 @@ RSpec.describe 'ASpaceInsightsApi instances route' do
     ASpaceInsightsApi
   end
 
+  let(:payload) { { type: 'report', data: {} } }
+  let(:payload_invalid) { '{ "type": "report", xyx"data": {} }' }
+  let(:payload_invalid_type) { { type: 'unknown', data: {} } }
+
   it 'accepts incoming payload when token supplied' do
-    post "/instances?token=#{ASpaceInsightsApi::Constants.TEST_TOKEN}"
+    post "/instances?token=#{ASpaceInsightsApi::Constants.TEST_TOKEN}", JSON.generate(payload)
     expect(last_response).to be_ok
-    expect(last_response.body).to match('ok') # placeholder
+    expect(last_response.body).to match('accepted')
+  end
+
+  it 'rejects incoming payload when payload is invalid' do
+    post "/instances?token=#{ASpaceInsightsApi::Constants.TEST_TOKEN}", payload_invalid
+    expect(last_response).to_not be_ok
+    expect(last_response.body).to match('Invalid payload')
+  end
+
+  it 'rejects incoming payload when type is unrecognized' do
+    post "/instances?token=#{ASpaceInsightsApi::Constants.TEST_TOKEN}", JSON.generate(payload_invalid_type)
+    expect(last_response).to_not be_ok
+    expect(last_response.body).to match('not recognized')
   end
 
   it 'rejects request when no token is provided' do
