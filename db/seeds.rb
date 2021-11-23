@@ -1,5 +1,5 @@
 if ENV.fetch('RACK_ENV', 'development') == 'development'
-  instance = Instance.find_or_create_by(code: 'test') do |i|
+  instance = Instance.find_or_create_by(code: 'test', name: 'Test') do |i|
     i.reports << Report.create(month: 1, data: { resources: 3 })
   end
   instance.repositories << Repository.find_or_create_by(code: 'test_repo_1') do |r|
@@ -22,4 +22,8 @@ if ENV.fetch('RACK_ENV', 'development') == 'development'
   Report.create(month: 2, data: { resources: 3 }, reportable: Repository.last)  # accept
 
   Report.create(month: 2, data: { resources: 5 }, reportable: instance) # accept
+
+  Instance.find_or_create_by(code: 'demo', name: 'Demo') do |i|
+    i.reports << Report.create(month: 2, data: { resources: 10 })
+  end
 end
