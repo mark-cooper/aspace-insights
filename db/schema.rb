@@ -16,23 +16,29 @@ ActiveRecord::Schema.define(version: 2021_11_20_105224) do
   enable_extension "plpgsql"
 
   create_table "instances", force: :cascade do |t|
+    t.string "code", null: false
+    t.string "frontend_url"
     t.string "name"
+    t.string "public_url"
+    t.string "tier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reports", force: :cascade do |t|
+    t.string "checksum", null: false
+    t.jsonb "data", null: false
     t.integer "month", null: false
-    t.integer "total", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reportable_type"
     t.bigint "reportable_id"
+    t.index ["month", "checksum", "reportable_id"], name: "index_reports_on_month_and_checksum_and_reportable_id", unique: true
     t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
   end
 
   create_table "repositories", force: :cascade do |t|
-    t.string "name"
+    t.string "code", null: false
     t.bigint "instance_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

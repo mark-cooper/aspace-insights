@@ -5,7 +5,7 @@ RSpec.describe 'ASpaceInsightsApi instances route' do
     ASpaceInsightsApi
   end
 
-  let(:payload) { { type: 'report', data: {} } }
+  let(:payload) { JSON.parse(File.read(File.join(RSPEC_ROOT, 'fixtures', 'report.json'))) }
   let(:payload_invalid) { '{ "type": "report", xyx"data": {} }' }
   let(:payload_invalid_type) { { type: 'unknown', data: {} } }
 
