@@ -1,10 +1,13 @@
+# set the environment first
+ENV['APP_ENV'] = 'test'
+ENV['RACK_ENV'] = 'test'
+
 require_relative '../main'
 require 'database_cleaner/active_record'
 require 'rspec'
 require 'rack/test'
 require 'shoulda/matchers'
 
-ENV['RACK_ENV'] = 'test'
 RSPEC_ROOT = File.dirname __FILE__
 
 DatabaseCleaner.strategy = :truncation

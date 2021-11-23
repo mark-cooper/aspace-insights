@@ -28,13 +28,18 @@ ActiveRecord::Schema.define(version: 2021_11_20_105224) do
   create_table "reports", force: :cascade do |t|
     t.string "checksum", null: false
     t.jsonb "data", null: false
+    t.integer "day", null: false
     t.integer "month", null: false
+    t.integer "year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reportable_type"
     t.bigint "reportable_id"
-    t.index ["month", "checksum", "reportable_id"], name: "index_reports_on_month_and_checksum_and_reportable_id", unique: true
+    t.index ["checksum", "day", "month", "year", "reportable_id", "reportable_type"], name: "index_reports_on_checksum_and_date_and_reportable", unique: true
+    t.index ["day"], name: "index_reports_on_day"
+    t.index ["month"], name: "index_reports_on_month"
     t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
+    t.index ["year"], name: "index_reports_on_year"
   end
 
   create_table "repositories", force: :cascade do |t|

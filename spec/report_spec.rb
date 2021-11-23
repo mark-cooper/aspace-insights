@@ -9,9 +9,10 @@ RSpec.describe Report, type: :model do
   context 'Adding a report' do
     context 'to an instance' do
       let(:instance)     { Instance.create(code: SecureRandom.uuid) }
-      let(:report1)      { Report.new(month: 1, data: { resources: 1 }, reportable: instance) }
-      let(:report1_dupe) { Report.new(month: 1, data: { resources: 1 }, reportable: instance) }
-      let(:report2)      { Report.new(month: 2, data: { resources: 1 }, reportable: instance) }
+      let(:report1)      { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: instance) }
+      let(:report1_dupe) { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: instance) }
+      let(:report1_next) { Report.new(day: 2, month: 1, year: 2021, data: { resources: 1 }, reportable: instance) }
+      let(:report2)      { Report.new(day: 1, month: 2, year: 2021, data: { resources: 1 }, reportable: instance) }
 
       it 'can add a new report but will not duplicate the same report' do
         expect(report1).to be_valid
@@ -20,11 +21,14 @@ RSpec.describe Report, type: :model do
         expect(instance.reports.count).to eq 1
 
         expect(report1_dupe).to_not be_valid
+        expect(report1_next).to be_valid
+        expect(report1_next.reportable_type).to eq 'Instance'
+        report1_next.save
 
         expect(report2).to be_valid
         expect(report2.reportable_type).to eq 'Instance'
         report2.save
-        expect(instance.reports.count).to eq 2
+        expect(instance.reports.count).to eq 3
       end
     end
 
@@ -32,12 +36,12 @@ RSpec.describe Report, type: :model do
       let(:instance)        { Instance.create(code: SecureRandom.uuid) }
       let(:repository1)     { Repository.create(code: SecureRandom.uuid, instance: instance) }
       let(:repository2)     { Repository.create(code: SecureRandom.uuid, instance: instance) }
-      let(:r1_report1)      { Report.new(month: 1, data: { resources: 1 }, reportable: repository1) }
-      let(:r1_report1_dupe) { Report.new(month: 1, data: { resources: 1 }, reportable: repository1) }
-      let(:r1_report2)      { Report.new(month: 2, data: { resources: 1 }, reportable: repository1) }
-      let(:r2_report1)      { Report.new(month: 1, data: { resources: 1 }, reportable: repository2) }
-      let(:r2_report1_dupe) { Report.new(month: 1, data: { resources: 1 }, reportable: repository2) }
-      let(:r2_report2)      { Report.new(month: 2, data: { resources: 1 }, reportable: repository2) }
+      let(:r1_report1)      { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: repository1) }
+      let(:r1_report1_dupe) { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: repository1) }
+      let(:r1_report2)      { Report.new(day: 1, month: 2, year: 2021, data: { resources: 1 }, reportable: repository1) }
+      let(:r2_report1)      { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: repository2) }
+      let(:r2_report1_dupe) { Report.new(day: 1, month: 1, year: 2021, data: { resources: 1 }, reportable: repository2) }
+      let(:r2_report2)      { Report.new(day: 1, month: 2, year: 2021, data: { resources: 1 }, reportable: repository2) }
 
       it 'can add a new report but will not duplicate the same report scoped by repository' do
         expect(r1_report1).to be_valid
