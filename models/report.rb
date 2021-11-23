@@ -5,6 +5,6 @@ class Report < ActiveRecord::Base
 
   def set_defaults
     self.checksum = Digest::SHA2.hexdigest(data.to_s)
-    self.month    = DateTime.now.month
+    self.month ||= DateTime.now.month
   end
 end
