@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  insights:
+    build:
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres/insights
+      DB_MIGRATE: "true"
+      TOKEN: 30bec197-09df-43f5-8ece-00256f92981b
+    ports:
+      - 3000:3000
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:

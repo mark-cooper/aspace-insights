@@ -19,9 +19,17 @@ bundle install
 RACK_ENV=production TOKEN=$TOKEN ./bin/puma -p 3000
 ```
 
-Import report data:
+## Docker
 
 ```bash
-./server.sh
+docker-compose build
+docker-compuse up
+```
+
+## Loading data
+
+Start the server with `./server.sh` (dev) or `docker-compose up` (prod):
+
+```bash
 curl -X POST -d @spec/fixtures/report.json "http://localhost:3000/instances?token=01609d9cc98201a9c859dece3035e19d"
 ```
