@@ -3,11 +3,18 @@ class Instance < ActiveRecord::Base
   has_many :repositories
   validates_presence_of :code
 
+  def report
+    as_json(
+      except: %i[id created_at updated_at],
+      include: { reports: { only: %i[data day month year] } }
+    )
+  end
+
   def self.report
+    report = []
     Instance.order(:code).all.each do |i|
-      i.reports.order('created_at DESC').limit(1).each do |r|
-        puts r.data['resources']
-      end
+      report << i.report
     end
+    report
   end
 end
