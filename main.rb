@@ -25,7 +25,8 @@ class ASpaceInsightsApi < Sinatra::Application
   end
 
   before do
-    authenticate!
+    content_type 'application/json'
+    authenticate! unless request.path_info == ASpaceInsightsApi::Constants.HEALTH_CHECK_PATH
   end
 
   run! if app_file == $0

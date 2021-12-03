@@ -22,4 +22,10 @@ RSpec.describe 'ASpaceInsightsApi base route' do
     expect(last_response).to_not be_ok
     expect(last_response.body).to match(/not authorized/)
   end
+
+  it 'accepts a request to the health check path without token' do
+    get '/ping'
+    expect(last_response).to be_ok
+    expect(last_response.body).to match('Ok!')
+  end
 end

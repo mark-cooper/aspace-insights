@@ -4,6 +4,10 @@ class ASpaceInsightsApi < Sinatra::Application
       '01609d9cc98201a9c859dece3035e19d'
     end
 
+    def self.HEALTH_CHECK_PATH
+      '/ping'
+    end
+
     def self.TEST_TOKEN
       '01609d9cc98201a9c859dece3035e19d'
     end

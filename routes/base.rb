@@ -5,4 +5,8 @@ class ASpaceInsightsApi < Sinatra::Application
                            version: ASpaceInsightsApi::Constants.VERSION
                          })]
   end
+
+  get '/ping' do
+    [200, MultiJson.dump({ message: 'Ok!' })]
+  end
 end
