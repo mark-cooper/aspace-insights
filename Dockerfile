@@ -12,7 +12,8 @@ COPY Gemfile* /usr/app/
 RUN gem install bundler:$BUNDLER_VERSION && \
     bundle update --bundler && \
     bundle config set without 'development test' && \
-    bundle install
+    bundle install && \
+    bundle binstubs --all
 
 COPY . /usr/app
 RUN chmod u+x docker-entrypoint.sh
