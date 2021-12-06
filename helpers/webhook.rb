@@ -35,7 +35,8 @@ class ASpaceInsightsApi < Sinatra::Application
       i = create_or_update_instance instance
       create_report(i, global)
 
-      repositories.first.each do |code, report|
+      repositories = repositories.first if repositories.is_a?(Array)
+      repositories.each do |code, report|
         i.repositories << Repository.find_or_create_by(code: code) do |r|
           create_report(r, report)
         end

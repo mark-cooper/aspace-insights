@@ -1,0 +1,146 @@
+{
+  "type": "report",
+  "data": {
+    "header": {
+      "sitecode": "demo",
+      "name": "LYRASIS",
+      "tier": null,
+      "frontend_url": "https://archivesspace.lyrasistechnology.org/staff",
+      "public_url": "https://archivesspace.lyrasistechnology.org",
+      "date": "2021-12-06 15:12:00 -0500"
+    },
+    "report": {
+      "global": {
+        "accession": 40,
+        "agent_corporate_entity": 56,
+        "agent_family": 6,
+        "agent_person": 268,
+        "agent_software": 2,
+        "archival_object": 8184,
+        "digital_object": 85,
+        "digital_object_component": 6,
+        "location": 646,
+        "repository": 11,
+        "resource": 64,
+        "subject": 188,
+        "top_container": 673,
+        "user": 37,
+        "total": 10266,
+        "user_last_mtime": "2021-09-30 14:58:31 UTC"
+      },
+      "repository": {
+        "LYRASIS SpecColl": {
+          "name": "LYRASIS Special Collections",
+          "publish": 1,
+          "accession": 30,
+          "archival_object": 3507,
+          "digital_object": 70,
+          "digital_object_component": 6,
+          "resource": 47,
+          "top_container": 344
+        },
+        "LYRASIS DTS": {
+          "name": "LYRASIS DTS Department",
+          "publish": 1,
+          "accession": 6,
+          "archival_object": 16,
+          "digital_object": 4,
+          "digital_object_component": 0,
+          "resource": 2,
+          "top_container": 6
+        },
+        "LYRASIS Corporate": {
+          "name": "LYRASIS  Corporate Archive",
+          "publish": 1,
+          "accession": 1,
+          "archival_object": 4520,
+          "digital_object": 1,
+          "digital_object_component": 0,
+          "resource": 6,
+          "top_container": 203
+        },
+        "LYRASIS Community Archives": {
+          "name": "LYRASIS Community Archives",
+          "publish": 1,
+          "accession": 0,
+          "archival_object": 0,
+          "digital_object": 0,
+          "digital_object_component": 0,
+          "resource": 0,
+          "top_container": 0
+        },
+        "TEST RP": {
+          "name": "TEST RP",
+          "publish": 1,
+          "accession": 1,
+          "archival_object": 38,
+          "digital_object": 1,
+          "digital_object_component": 0,
+          "resource": 1,
+          "top_container": 13
+        },
+        "Training ": {
+          "name": "Russell L. Palmer's Repository of Training Materials ",
+          "publish": 1,
+          "accession": 0,
+          "archival_object": 20,
+          "digital_object": 0,
+          "digital_object_component": 0,
+          "resource": 1,
+          "top_container": 4
+        },
+        "integration": {
+          "name": "Islandora ASpace Integration",
+          "publish": 1,
+          "accession": 0,
+          "archival_object": 1,
+          "digital_object": 2,
+          "digital_object_component": 0,
+          "resource": 1,
+          "top_container": 0
+        },
+        "Bakersfield": {
+          "name": "Bakersfield College",
+          "publish": 0,
+          "accession": 1,
+          "archival_object": 26,
+          "digital_object": 1,
+          "digital_object_component": 0,
+          "resource": 2,
+          "top_container": 0
+        },
+        "BTEST": {
+          "name": "Brian's Testing Stuff",
+          "publish": 1,
+          "accession": 0,
+          "archival_object": 0,
+          "digital_object": 0,
+          "digital_object_component": 0,
+          "resource": 0,
+          "top_container": 0
+        },
+        "hwlc": {
+          "name": "Chicago Public Library - Harold Washington Library Center",
+          "publish": 1,
+          "accession": 1,
+          "archival_object": 51,
+          "digital_object": 2,
+          "digital_object_component": 0,
+          "resource": 3,
+          "top_container": 25
+        },
+        "DuraCloud": {
+          "name": "LYRASIS DuraCloud",
+          "publish": 1,
+          "accession": 0,
+          "archival_object": 5,
+          "digital_object": 4,
+          "digital_object_component": 0,
+          "resource": 1,
+          "top_container": 0
+        }
+      }
+    },
+    "checksum": "4f417c2142e89ac6b6528b9c5673ac77b63cecdb90ad90881848263482f455c4"
+  }
+}
