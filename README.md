@@ -38,6 +38,7 @@ curl -X POST -d @spec/fixtures/report1.json "http://localhost:3000/instances?tok
 ## Starter queries
 
 ```bash
+# Basic instances
 SELECT DISTINCT ON (x.code)
   x.code,
   r.year,
@@ -51,6 +52,34 @@ AND r.reportable_type = 'Instance'
 ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC
 ;
 
+# Basic instances with record by types avg (score)
+SELECT DISTINCT ON (x.code)
+  x.code,
+  r.year,
+  r.month,
+  r.day,
+  r.data->>'resource' AS resources,
+  r.data->>'archival_object' AS archival_objects,
+  r.data->>'top_container' AS containers,
+  r.data->>'accession' AS accessions,
+  r.data->>'digital_object' AS digital_objects,
+  r.data->>'user' AS users,
+  (
+    (r.data->>'resource')::int +
+    (r.data->>'archival_object')::int +
+    (r.data->>'top_container')::int +
+    (r.data->>'accession')::int +
+    (r.data->>'digital_object')::int +
+    (r.data->>'user')::int
+  ) / 6 as score,
+  r.data->>'user_last_mtime' AS last_login
+FROM reports r
+JOIN instances x on r.reportable_id = x.id
+AND r.reportable_type = 'Instance'
+ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC
+;
+
+# Basic repositories
 SELECT DISTINCT ON (name)
   x.code as name,
   i.code as site,
