@@ -41,6 +41,7 @@ curl -X POST -d @spec/fixtures/report1.json "http://localhost:3000/instances?tok
 # Basic instances
 SELECT DISTINCT ON (x.code)
   x.code,
+  LEFT(x.name, 75),
   r.year,
   r.month,
   r.day,
@@ -55,6 +56,7 @@ ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC
 # Basic instances with record by types avg (score)
 SELECT DISTINCT ON (x.code)
   x.code,
+  LEFT(x.name, 75),
   r.year,
   r.month,
   r.day,
@@ -82,7 +84,8 @@ ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC
 # Basic repositories
 SELECT DISTINCT ON (name)
   x.code as name,
-  i.code as site,
+  i.code as site_code,
+  LEFT(i.name, 75) as site_name,
   r.year,
   r.month,
   r.day,
