@@ -26,7 +26,11 @@ class ASpaceInsightsApi < Sinatra::Application
 
   before do
     content_type 'application/json'
-    authenticate! unless ASpaceInsightsApi::Constants.UNAUTHENTICATED_ENDPOINTS.include?(request.path_info)
+    unless ASpaceInsightsApi::Constants.UNAUTHENTICATED_ENDPOINTS.include?(
+      request.path_info
+    ) || request.path_info =~ %r{/reports}
+      authenticate!
+    end
   end
 
   run! if app_file == $0

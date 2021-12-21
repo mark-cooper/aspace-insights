@@ -1,0 +1,43 @@
+<p class="subtitle">
+  All instances report
+</p>
+<div class="table-container">
+  <table class="table is-bordered is-fullwidth is-striped">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Day</th>
+        <th>Resources</th>
+        <th>A.Objs</th>
+        <th>Containers</th>
+        <th>Accessions</th>
+        <th>D.Objs</th>
+        <th>Users</th>
+        <th>Score</th>
+        <th>Last Login</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @report.each do |r| %>
+      <tr>
+        <td><a href="/reports/instances/<%= r['code'] %>"><%= r['code'] %></a></td>
+        <td><%= r['name'] %></td>
+        <td><%= r['year'] %></td>
+        <td><%= r['month'] %></td>
+        <td><%= r['day'] %></td>
+        <td><%= r['resources'] %></td>
+        <td><%= r['archival_objects'] %></td>
+        <td><%= r['containers'] %></td>
+        <td><%= r['accessions'] %></td>
+        <td><%= r['digital_objects'] %></td>
+        <td><%= r['users'] %></td>
+        <td><%= r['score'] %></td>
+        <td><%= r['last_login'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

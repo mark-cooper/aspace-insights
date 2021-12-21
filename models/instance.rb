@@ -3,18 +3,15 @@ class Instance < ActiveRecord::Base
   has_many :repositories
   validates_presence_of :code
 
-  def report
-    as_json(
-      except: %i[id created_at updated_at],
-      include: { reports: { only: %i[data day month year] } }
-    )
+  def self.basic_report
+    self.connection.select_all(
+      ASpaceInsightsApi::Queries.instance_report_basic
+    ).to_hash
   end
 
-  def self.report
-    report = []
-    Instance.order(:code).all.each do |i|
-      report << i.report
-    end
-    report
+  def self.full_report
+    self.connection.select_all(
+      ASpaceInsightsApi::Queries.instance_report_full
+    ).to_hash
   end
 end
