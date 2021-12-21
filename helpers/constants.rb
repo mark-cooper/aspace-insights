@@ -8,6 +8,10 @@ class ASpaceInsightsApi < Sinatra::Application
       '01609d9cc98201a9c859dece3035e19d'
     end
 
+    def self.title
+      'ArchivesSpace Insights API'
+    end
+
     def self.TOKEN_MIN_LENGTH
       12
     end

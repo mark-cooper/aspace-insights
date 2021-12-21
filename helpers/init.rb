@@ -1,4 +1,5 @@
 require 'authentication'
 require 'constants'
+require 'queries'
 require 'token'
 require 'webhook'
