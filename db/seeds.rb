@@ -24,6 +24,12 @@ if ENV.fetch('RACK_ENV', 'development') == 'development'
   Report.create(month: 2, data: { resource: 5 }, reportable: instance) # accept
 
   Instance.find_or_create_by(code: 'anothertest', name: 'Another Test') do |i|
-    i.reports << Report.create(month: 2, data: { resource: 10 })
+    i.reports << Report.create(month: 1, day: 1, data: { resource: 1 })
+
+    (1..14).each do |d|
+      i.reports << Report.create(month: 2, day: d, data: { resource: 10 + d })
+    end
+
+    i.reports << Report.create(month: 3, day: 1, data: { resource: 30 })
   end
 end

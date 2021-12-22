@@ -1,5 +1,50 @@
 class ASpaceInsightsApi < Sinatra::Application
   module Queries
+    def self.instance_daily_by_month(code, month)
+      code  = ActiveRecord::Base.connection.quote(code)
+      month = ActiveRecord::Base.connection.quote(month)
+      "
+      SELECT
+        day,
+        r.data->>'resource' AS resources
+      FROM instances i
+      JOIN reports r ON r.reportable_id = i.id
+      WHERE r.reportable_type = 'Instance'
+      AND r.month = #{month}
+      AND i.code = #{code};
+      "
+    end
+
+    def self.instance_monthly_all_years(code)
+      code = ActiveRecord::Base.connection.quote(code)
+      "
+      SELECT DISTINCT ON (month)
+        month,
+        r.data->>'resource' AS resources
+      FROM instances i
+      JOIN reports r ON r.reportable_id = i.id
+      WHERE r.reportable_type = 'Instance'
+      AND i.code = #{code}
+      ORDER BY month, resources DESC;
+      "
+    end
+
+    def self.instance_monthly_by_year(code, year)
+      code = ActiveRecord::Base.connection.quote(code)
+      year = ActiveRecord::Base.connection.quote(year)
+      "
+      SELECT DISTINCT ON (month)
+        month,
+        r.data->>'resource' AS resources
+      FROM instances i
+      JOIN reports r ON r.reportable_id = i.id
+      WHERE r.reportable_type = 'Instance'
+      AND r.year = #{year}
+      AND i.code = #{code}
+      ORDER BY month, resources DESC;
+      "
+    end
+
     def self.instance_report_basic
       "
       SELECT DISTINCT ON (x.code)
@@ -43,8 +88,7 @@ class ASpaceInsightsApi < Sinatra::Application
       FROM reports r
       JOIN instances x on r.reportable_id = x.id
       AND r.reportable_type = 'Instance'
-      ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC
-      ;
+      ORDER BY x.code, r.year DESC, r.month DESC, r.day DESC;
       "
     end
 
@@ -62,8 +106,7 @@ class ASpaceInsightsApi < Sinatra::Application
       JOIN repositories x on r.reportable_id = x.id
       JOIN instances i ON x.instance_id = i.id
       AND r.reportable_type = 'Repository'
-      ORDER BY name, r.year DESC, r.month DESC, r.day DESC
-      ;
+      ORDER BY name, r.year DESC, r.month DESC, r.day DESC;
       "
     end
   end
