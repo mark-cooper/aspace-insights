@@ -2,22 +2,19 @@
   All instances report
 </p>
 <div class="table-container">
-  <table class="table is-bordered is-fullwidth is-striped">
+  <table id="instances" class="table is-bordered is-fullwidth is-striped" data-page-length="<%= settings.page_size %>">
     <thead>
       <tr>
         <th>Code</th>
         <th>Name</th>
-        <th>Year</th>
-        <th>Month</th>
-        <th>Day</th>
         <th>Resources</th>
-        <th>A.Objs</th>
+        <th><abbr title="Archival Objects">A.Objs</abbr></th>
         <th>Containers</th>
         <th>Accessions</th>
-        <th>D.Objs</th>
+        <th><abbr title="Digital Objects">D.Objs</abbr></th>
         <th>Users</th>
-        <th>Score</th>
-        <th>Last Login</th>
+        <th><abbr title="Computed relative size">Score</abbr></th>
+        <th><abbr title="Last login date of any non-system user">Last Login</abbr></th>
       </tr>
     </thead>
     <tbody>
@@ -25,9 +22,6 @@
       <tr>
         <td><a href="/reports/instances/<%= r['code'] %>"><%= r['code'] %></a></td>
         <td><%= r['name'] %></td>
-        <td><%= r['year'] %></td>
-        <td><%= r['month'] %></td>
-        <td><%= r['day'] %></td>
         <td><%= r['resources'] %></td>
         <td><%= r['archival_objects'] %></td>
         <td><%= r['containers'] %></td>
@@ -41,3 +35,8 @@
     </tbody>
   </table>
 </div>
+<script>
+  $(document).ready(function() {
+    $('#instances').DataTable();
+  });
+</script>

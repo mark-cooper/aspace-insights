@@ -1,7 +1,10 @@
 ---
 development:
+  page_size: 25
   token: "<%= ASpaceInsightsApi::Constants.DEVELOPMENT_TOKEN %>"
 test:
+  page_size: 25
   token: "<%= ASpaceInsightsApi::Constants.TEST_TOKEN %>"
 production:
+  page_size: 25
   token: "<%= ENV.fetch('TOKEN', nil) %>"
