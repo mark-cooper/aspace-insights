@@ -33,5 +33,10 @@ class ASpaceInsightsApi < Sinatra::Application
     end
   end
 
+  not_found do
+    content_type :text
+    '404 Not Found'
+  end
+
   run! if app_file == $0
 end

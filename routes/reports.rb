@@ -7,6 +7,10 @@ class ASpaceInsightsApi < Sinatra::Application
 
   get '/reports/instances/:i_code' do
     content_type :html
+    @instance = Instance.where(code: params[:i_code]).first
+    pass unless @instance
+
+    erb :'instance.html', layout: :'layout.html'
   end
 
   get '/reports/instances/:i_code/repositories' do
