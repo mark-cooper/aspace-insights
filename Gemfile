@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activerecord', '5.2'
+gem 'chartkick'
 gem 'multi_json'
 gem 'pg'
 gem 'puma'

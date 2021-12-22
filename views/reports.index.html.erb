@@ -35,6 +35,12 @@
     </tbody>
   </table>
 </div>
+
+<p class="subtitle">All instances resource count</p>
+<%=
+  bar_chart ASpaceInsightsApi::Chart.by_property(@report.sort_by{ |r| r['resources'] }.reverse, 'name')
+%>
+
 <script>
   $(document).ready(function() {
     $('#instances').DataTable();

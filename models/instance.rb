@@ -27,6 +27,10 @@ class Instance < ActiveRecord::Base
     ).to_hash
   end
 
+  def self.monthly_report_by_months(code, months)
+    monthly_report(code).last(months)
+  end
+
   def self.monthly_report_by_year(code, year)
     connection.select_all(
       ASpaceInsightsApi::Queries.instance_monthly_by_year(code, year)

@@ -1,4 +1,5 @@
 require 'authentication'
+require 'chart'
 require 'constants'
 require 'queries'
 require 'token'
