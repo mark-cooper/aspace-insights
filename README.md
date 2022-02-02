@@ -15,6 +15,9 @@ bundle install
 # test
 ./bin/rspec
 
+# db cli (pgcli)
+./db.sh
+
 # production
 RACK_ENV=production TOKEN=$TOKEN ./bin/puma -p 3000
 ```

@@ -70,6 +70,8 @@ class ASpaceInsightsApi < Sinatra::Application
       "
       SELECT DISTINCT ON (x.code)
         x.code,
+        x.frontend_url,
+        x.public_url,
         LEFT(x.name, 75) as name,
         r.year,
         r.month,
