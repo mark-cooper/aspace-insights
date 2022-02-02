@@ -8,4 +8,10 @@ class Repository < ActiveRecord::Base
       ASpaceInsightsApi::Queries.repository_report_basic
     ).to_hash
   end
+
+  def self.summary(instance)
+    self.connection.select_all(
+      ASpaceInsightsApi::Queries.repository_report_summary(instance)
+    ).to_hash
+  end
 end

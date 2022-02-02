@@ -100,6 +100,7 @@ class ASpaceInsightsApi < Sinatra::Application
       "
       SELECT DISTINCT ON (name)
         x.code as name,
+        r.data->>'name' AS repo_name,
         i.code as site_code,
         LEFT(i.name, 75) as site_name,
         r.year,
@@ -110,6 +111,31 @@ class ASpaceInsightsApi < Sinatra::Application
       JOIN repositories x on r.reportable_id = x.id
       JOIN instances i ON x.instance_id = i.id
       AND r.reportable_type = 'Repository'
+      ORDER BY name, r.year DESC, r.month DESC, r.day DESC;
+      "
+    end
+
+    def self.repository_report_summary(instance)
+      code = ActiveRecord::Base.connection.quote(instance.code)
+      "
+      SELECT DISTINCT ON (name)
+        x.code as name,
+        r.data->>'name' AS repo_name,
+        i.code as site_code,
+        LEFT(i.name, 75) as site_name,
+        r.year,
+        r.month,
+        r.day,
+        r.data->>'resource' AS resources,
+        r.data->>'archival_object' AS archival_objects,
+        r.data->>'top_container' AS containers,
+        r.data->>'accession' AS accessions,
+        r.data->>'digital_object' AS digital_objects
+      FROM reports r
+      JOIN repositories x on r.reportable_id = x.id
+      JOIN instances i ON x.instance_id = i.id
+      AND r.reportable_type = 'Repository'
+      WHERE i.code = #{code}
       ORDER BY name, r.year DESC, r.month DESC, r.day DESC;
       "
     end

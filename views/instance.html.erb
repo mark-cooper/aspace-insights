@@ -6,3 +6,39 @@
     Instance.monthly_report_by_months(@instance.code, 12)
   )
 %>
+
+<p class="subtitle">
+  Repositories
+</p>
+<div class="table-container">
+  <table id="repositories" class="table is-bordered is-fullwidth is-striped" data-page-length="<%= settings.page_size %>">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Resources</th>
+        <th><abbr title="Archival Objects">A.Objs</abbr></th>
+        <th>Containers</th>
+        <th>Accessions</th>
+        <th><abbr title="Digital Objects">D.Objs</abbr></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% Repository.summary(@instance).sort_by { |r| r['repo_name'] }.each do |r| %>
+      <tr>
+        <td><%= r['repo_name'] %></td>
+        <td><%= r['resources'] %></td>
+        <td><%= r['archival_objects'] %></td>
+        <td><%= r['containers'] %></td>
+        <td><%= r['accessions'] %></td>
+        <td><%= r['digital_objects'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#repositories').DataTable();
+  });
+</script>
