@@ -1,7 +1,8 @@
 class ASpaceInsightsApi < Sinatra::Application
   module Queries
-    def self.instance_daily_by_month(code, month)
+    def self.instance_daily_by_month(code, month, year = Date.today.year)
       code  = ActiveRecord::Base.connection.quote(code)
+      year  = ActiveRecord::Base.connection.quote(year)
       month = ActiveRecord::Base.connection.quote(month)
       "
       SELECT
@@ -11,6 +12,7 @@ class ASpaceInsightsApi < Sinatra::Application
       JOIN reports r ON r.reportable_id = i.id
       WHERE r.reportable_type = 'Instance'
       AND r.month = #{month}
+      AND r.year = #{year}
       AND i.code = #{code};
       "
     end
@@ -18,14 +20,15 @@ class ASpaceInsightsApi < Sinatra::Application
     def self.instance_monthly_all_years(code)
       code = ActiveRecord::Base.connection.quote(code)
       "
-      SELECT DISTINCT ON (month)
+      SELECT DISTINCT ON (year, month)
+        year,
         month,
         r.data->>'resource' AS resources
       FROM instances i
       JOIN reports r ON r.reportable_id = i.id
       WHERE r.reportable_type = 'Instance'
       AND i.code = #{code}
-      ORDER BY month, resources DESC;
+      ORDER BY year, month, resources DESC;
       "
     end
 
@@ -33,7 +36,8 @@ class ASpaceInsightsApi < Sinatra::Application
       code = ActiveRecord::Base.connection.quote(code)
       year = ActiveRecord::Base.connection.quote(year)
       "
-      SELECT DISTINCT ON (month)
+      SELECT DISTINCT ON (year, month)
+        year,
         month,
         r.data->>'resource' AS resources
       FROM instances i

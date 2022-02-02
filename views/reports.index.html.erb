@@ -39,7 +39,7 @@
 <p class="subtitle">All instances resource count</p>
 <%=
   bar_chart(
-    ASpaceInsightsApi::Chart.by_property(@report.sort_by{ |r| r['resources'].to_i }.reverse, 'name'),
+    ASpaceInsightsApi::Chart.by_property(@report, 'code', 'chart_resources'),
     height: "#{(@report.count * 75) + 40}px"
   )
 %>

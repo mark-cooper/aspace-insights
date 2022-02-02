@@ -9,9 +9,9 @@ class Instance < ActiveRecord::Base
     ).to_hash
   end
 
-  def self.daily_report_by_month(code, month)
+  def self.daily_report_by_month(code, month, year = Date.today.year)
     connection.select_all(
-      ASpaceInsightsApi::Queries.instance_daily_by_month(code, month)
+      ASpaceInsightsApi::Queries.instance_daily_by_month(code, month, year)
     ).to_hash
   end
 

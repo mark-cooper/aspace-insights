@@ -12,6 +12,10 @@ class ASpaceInsightsApi < Sinatra::Application
       'ArchivesSpace Insights API'
     end
 
+    def self.REPORT_LARGE_TIER
+      1000
+    end
+
     def self.TOKEN_MIN_LENGTH
       12
     end

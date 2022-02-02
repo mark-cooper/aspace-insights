@@ -2,6 +2,13 @@ class ASpaceInsightsApi < Sinatra::Application
   get '/reports' do
     content_type :html
     @report = Instance.full_report
+    @report.each do |i|
+      i['chart_resources'] = if i['resources'].to_i > ASpaceInsightsApi::Constants.REPORT_LARGE_TIER
+                               ASpaceInsightsApi::Constants.REPORT_LARGE_TIER
+                             else
+                               i['resources'].to_i
+                             end
+    end
     erb :'reports.index.html', layout: :'layout.html'
   end
 
